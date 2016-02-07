@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>Auto Fill Scroll Test</title>
+    <style type="text/css">
+      .entry
+      {
+        height:75px;
+
+        border-bottom:solid 1px #cccccc;
+        border-top:solid 1px #cccccc;
+        border-collapse:collapse;
+        padding:5px;
+      }
+    </style>
+    <script type="text/javascript" src="javascript.js"></script>
+  </head>
+  <body>
+    <div style="position:relative;height:400px;width:500px;border:1px solid black;">
+      <div style="overflow:auto;height:100%;width:100%;" 
+           onscroll="OnDivScroll();" id="scrollContainer">
+        <div class="entry">Initial Entry 1</div>
+        <div class="entry">Initial Entry 2</div>
+        <div class="entry">Initial Entry 3</div>
+        <div class="entry">Initial Entry 4</div>
+        <div class="entry">Initial Entry 5</div>
+        <div class="entry">Initial Entry 6</div>
+        <div class="entry">Initial Entry 7</div>
+        <div class="entry">Initial Entry 8</div>
+        <div class="entry">Initial Entry 10</div>
+        <div class="entry">Initial Entry 11</div>
+        <div class="entry">Initial Entry 12</div>
+        <div class="entry">Initial Entry 13</div>
+        <div class="entry">Initial Entry 14</div>
+        <div class="entry">Initial Entry 15</div>
+        <div class="entry">Initial Entry 16</div>
+        <div class="entry">Initial Entry 17</div>
+        <div class="entry">Initial Entry 18</div>
+      </div>
+      <div id="loadingDiv" tyle="position:absolute;bottom:2px;right:20px;
+           padding:5px;display:none;background-color:Black;color:White;">
+        Loading...
+      </div>
+    </div>
+  </body>
+</html>
+
+var NumberOfNewEntrySets = 1;
+
+function OnDivScroll()
+{  
+  var el = document.getElementById('scrollContainer');
+  if(el.scrollTop < el.scrollHeight - 800)
+    return;
+
+
+  var loading = document.getElementById('loadingDiv');
+  if(loading.style.display == '')
+    return; //already loading
+
+  loading.style.display = '';
+
+  LoadMoreElements();
+}
+
+function LoadMoreElements()
+{
+  //Do a server callback to load 
+  //more elements
+
+  setTimeout(LoadCallback, 350);
+}
+
+function LoadCallback()
+{
+  var el = document.getElementById('scrollContainer');
+  var loading = document.getElementById('loadingDiv');
+
+  loading.style.display = 'none';
+
+  for(var i=1; i<=6; i++)
+    el.innerHTML += "<div class='entry'>New Entry " + i 
+        + " of Set " + NumberOfNewEntrySets + "</div>";
+  NumberOfNewEntrySets++;
+}
