@@ -1,0 +1,31 @@
+<div ng-app="myApp">
+
+    <form name="saveTemplateData" action="#" ng-controller="FormCtrl" ng-submit="submitForm()">
+
+        First name:    <br/><input type="text" ng-model="form.firstname">    <br/><br/>
+        Email Address: <br/><input type="text" ng-model="form.emailaddress"> <br/><br/>
+
+        <textarea rows="3" cols="25" ng-model="form.textareacontent"></textarea>
+
+            <br/><br/>
+
+        <input type="radio" ng-model="form.gender" value="female" />Female ...
+        <input type="radio" ng-model="form.gender" value="male" />Male <br/>
+
+            <br/><br/>
+
+        <input type="checkbox" ng-model="form.member" value="5"/> Already a member
+
+            <br/><br/>
+
+        <input type="file" ng-model="form.file_profile" id="file_profile"><br/>
+        <input type="file" ng-model="form.file_avatar" id="file_avatar">
+
+            <br/><br/>
+
+        <!-- <button ng-click="save()" >Save</button> -->
+        <input type="submit" ngClick="Submit" >
+
+    </form>
+
+</div>
